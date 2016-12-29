@@ -13,6 +13,8 @@ router.post('/api/albums/:id/tracks', jsonParser, (req, res, next) => {
     let title = req.body.title;
     new Track({_album: album._id, title: title}).save()
     .then(track => {
+      album._tracks.push(track);
+      album.save();
       res.json(track);
     })
     .catch(next);
@@ -26,7 +28,8 @@ router.get('/api/tracks/:id', jsonParser, (req, res, next) => {
     if(err) return console.Error(err);
     console.log(track);
     res.json(track);
-  });
+  })
+  .catch(next);
 });
 
 module.exports = router;
