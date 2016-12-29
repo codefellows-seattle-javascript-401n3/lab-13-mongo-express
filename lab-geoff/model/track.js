@@ -8,4 +8,4 @@ let trackSchema = new Schema({
   title: String
 });
 
-module.exports = mongoose.model('track', trackSchema);
+module.exports = mongoose.model('Track', trackSchema);
