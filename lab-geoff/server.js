@@ -3,8 +3,7 @@
 let express = require('express');
 let mongoose = require('mongoose');
 
-// let MONGO_URI = process.env.MONGO_URI;
-let MONGO_URI = 'mongodb://localhost/albums';
+let MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost/albums';
 console.log(MONGO_URI);
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URI);
