@@ -19,5 +19,14 @@ router.post('/api/albums/:id/tracks', jsonParser, (req, res, next) => {
   })
   .catch(next);
 });
+router.get('/api/tracks/:id', jsonParser, (req, res, next) => {
+  Track.findById(req.params.id)
+  .populate('_album')
+  .exec((err, track) => {
+    if(err) return console.Error(err);
+    console.log(track);
+    res.json(track);
+  });
+});
 
 module.exports = router;
