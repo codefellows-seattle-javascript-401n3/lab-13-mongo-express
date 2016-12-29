@@ -4,8 +4,8 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let trackSchema = new Schema({
-  title: String,
-  _album: {type: mongoose.Schema.ObjectId, ref: 'Album'}
+  _album: {type: Schema.Types.ObjectId, ref: 'Album'},
+  title: String
 });
 
 module.exports = mongoose.model('track', trackSchema);
