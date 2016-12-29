@@ -23,8 +23,9 @@ router.put('/api/albums/:id', jsonParser, function(req, res, next) {
 router.get('/api/albums/:id', jsonParser, function(req, res, next) {
   console.log(req.params.id);
   Album.findById(req.params.id)
-  .then(album => {
-    console.log(album);
+  .populate('_tracks')
+  .exec((err, album) => {
+    if(err) return console.Error(err);
     res.json(album);
   })
   .catch(next);
