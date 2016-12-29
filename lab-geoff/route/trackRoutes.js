@@ -25,11 +25,18 @@ router.get('/api/tracks/:id', jsonParser, (req, res, next) => {
   Track.findById(req.params.id)
   .populate('_album')
   .exec((err, track) => {
-    if(err) return console.Error(err);
-    console.log(track);
     res.json(track);
   })
   .catch(next);
+});
+router.delete('/api/tracks/:id', (req, res) => {
+  Track.findByIdAndRemove(req.params.id)
+  .then(()=> {
+    res.sendStatus(204);
+  })
+  .catch(err => {
+    console.Error(err);
+  });
 });
 
 module.exports = router;
