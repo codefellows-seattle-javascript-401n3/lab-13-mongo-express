@@ -69,7 +69,7 @@ describe('testing route /api/recipe', function(){
           Recipe.remove({})
           .then(() => done())
           .catch(done);
-          return;
+          // ret urn;
         }
         done();
       });
